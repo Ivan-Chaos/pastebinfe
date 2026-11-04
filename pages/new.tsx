@@ -10,6 +10,7 @@ import {
   type Snippet,
 } from "@/lib/api";
 import { validateHtml } from "@/lib/validateHtml";
+import { snippetHref, snippetShareUrl } from "@/lib/routes";
 import SnippetFrame from "@/components/SnippetFrame";
 import CopyButton from "@/components/CopyButton";
 
@@ -75,7 +76,7 @@ export default function NewSnippet() {
   }
 
   if (created) {
-    const url = `${window.location.origin}/snippet/${encodeURIComponent(created.id)}`;
+    const url = snippetShareUrl(created.id);
     return (
       <>
         <Head>
@@ -95,7 +96,7 @@ export default function NewSnippet() {
             />
             <CopyButton text={url} label="Copy link" />
             <Link
-              href={`/snippet/${encodeURIComponent(created.id)}`}
+              href={snippetHref(created.id)}
               className="rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background"
             >
               Open
