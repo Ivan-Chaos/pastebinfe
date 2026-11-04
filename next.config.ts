@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
     },
   },
   reactStrictMode: true,
+  async redirects() {
+    // Legacy share links from the original HANDOFF spec.
+    return [{ source: "/s/:id", destination: "/snippet/:id", permanent: false }];
+  },
 };
 
 export default nextConfig;
